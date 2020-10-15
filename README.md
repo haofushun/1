@@ -35,37 +35,37 @@
 <div align=center>**EnemyColor = BLUE; TargetNum = 1**</div>  
 
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/B1.png" width = "600" alt="图2.1 装甲板识别"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/B1.png" width = "600" alt="图2.1 装甲板识别"/>
 </div>  
 
  
 <div align=center>**EnemyColor = RED; TargetNum = 2**</div>  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/R.png" width = "600" alt="图2.2 装甲板识别"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/R.png" width = "600" alt="图2.2 装甲板识别"/>
 </div>  
 
 在640\*480图像分辨率下，**装甲板识别帧率可达340fps左右，引入ROI之后可达420fps**。但考虑到识别帧率对于电控机械延迟的饱和，取消引入ROI操作，以此避免引入ROI之后无法及时探测全局视野情况的问题，加快机器人自瞄响应。  
 <div align=center>**640\*480（峰值可达340FPS）**</div>  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/armor640480.gif" width = "600" alt="图2.3 装甲板实时识别帧率"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/armor640480.gif" width = "600" alt="图2.3 装甲板实时识别帧率"/>
 </div>  
 
 
 <div align=center>**320\*240（峰值可达1400FPS）**</div>  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/armor320240.gif" width = "600" alt="图2.4 装甲板实时识别帧率"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/armor320240.gif" width = "600" alt="图2.4 装甲板实时识别帧率"/>
 </div> 
 
 
 装甲板数字识别采用SVM，通过装甲板位置信息裁剪二值化后的装甲板图像并透射变换，投入训练好的SVM模型中识别，**数字识别准确率可达98%**。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/RealtimeArmor.gif" width = "600" alt="图2.5 装甲板数字识别"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/RealtimeArmor.gif" width = "600" alt="图2.5 装甲板数字识别"/>
 </div> 
 
  
 ### 大风车能量机关识别  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/windmill.gif" width = "600" alt="图2.6 大风车识别演示"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/windmill.gif" width = "600" alt="图2.6 大风车识别演示"/>
 </div> 
  
 ### 角度解算  
@@ -73,10 +73,10 @@
 此外还引入了相机-枪口的Y轴距离补偿及重力补偿。  
 使用标定板测试，角度解算计算的距离误差在10%以内，角度基本与实际吻合。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/pos.jpg" width = "600" alt="图2.7 角度解算测试图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/pos.jpg" width = "600" alt="图2.7 角度解算测试图"/>
 </div> 
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/angle_solver.gif" width = "600" alt="图2.7 角度解算测试图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/angle_solver.gif" width = "600" alt="图2.7 角度解算测试图"/>
 </div> 
  
 ---
@@ -131,7 +131,7 @@ JLURoboVision/
 ```
 ### 整体算法流程图  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/Armor.png " width = "800" alt="图4.1 自瞄算法流程图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/Armor.png " width = "800" alt="图4.1 自瞄算法流程图"/>
 </div>  
 
 ---
@@ -145,7 +145,7 @@ JLURoboVision/
 其原理是在**低曝光**（3000~5000）情况下，蓝色灯条区域的B通道值要远高于R通道值，使用B通道减去R通道再二值化，能提取出蓝色灯条区域，反之亦然。  
 此外，我们还对颜色提取二值图进行一次掩膜大小3*3，形状MORPH_ELLIPSE的膨胀操作，用于图像降噪及灯条区域的闭合。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/src_binary.jpg " width = "600" alt="图5.1 颜色提取二值图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/src_binary.jpg " width = "600" alt="图5.1 颜色提取二值图"/>
 </div>  
 
 2. **灯条检测**  
@@ -154,7 +154,7 @@ JLURoboVision/
 使用得到的旋转矩形（RotatedRect）构造灯条实例（LightBar），  
 在筛除偏移角过大的灯条后依据灯条中心从左往右排序。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/Light_Monitor.jpg " width = "600" alt="图5.2 灯条识别图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/Light_Monitor.jpg " width = "600" alt="图5.2 灯条识别图"/>
 </div>  
 
 3. **装甲板匹配**  
@@ -190,14 +190,14 @@ void eraseErrorRepeatArmor(vector<ArmorBox> & armors)
 匹配好装甲板后，利用装甲板的顶点在原图的二值图（原图的灰度二值图）中剪切装甲板图，  
 使用透射变换将装甲板图变换为SVM模型所需的Size，随后投入SVM识别装甲板数字。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/NumClassifier.png " width = "600" alt="图5.3 装甲板数字识别图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/NumClassifier.png " width = "600" alt="图5.3 装甲板数字识别图"/>
 </div>  
 
 5. **目标装甲板选取**  
 对上述各项装甲板信息（顶点中心点坐标与枪口锚点距离、面积大小、装甲板数字及其是否与操作手设定匹配）进行加权求和，  
 从而获取最佳打击装甲板作为最终的目标装甲板。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/Armor_Monitor.png " width = "600" alt="图5.4 装甲板识别效果图"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/Armor_Monitor.png " width = "600" alt="图5.4 装甲板识别效果图"/>
 </div>  
 
 ---
@@ -207,7 +207,7 @@ void eraseErrorRepeatArmor(vector<ArmorBox> & armors)
 根据目标装甲板坐标和中心坐标计算极坐标系下的目标角度，进而预测待击打点的坐标（小符为装甲板本身，大符需要旋转）。  
 最后将待击打点坐标和图像中心的差值转换为yaw和pitch轴角度，增加一环PID后发送给云台主控板。  
 <div align=center>
-<img src="https://gitee.com/mountain123/JLURoboVision/raw/master/Assets/windmill.png " width = "600" alt="图5.5 大风车识别"/>
+<img src="https://gitee.com/qunshanhe/JLURoboVision/raw/master/Assets/windmill.png " width = "600" alt="图5.5 大风车识别"/>
 </div>  
 ### 角度解算  
 角度解算部分使用了两种模型解算枪管直指向目标装甲板所需旋转的yaw和pitch角。  
@@ -260,9 +260,9 @@ $$ \tan yaw = \frac{Y}{Z} = \frac{y_{screen} - c_y}{f_y} $$
 
 ### 单独模块调试  
 可参考下列示例代码：  
-[JLUVision_Demos](https://gitee.com/mountain123/JLUVision_Demos)各示例程序代码库  
-[Armor_Demo](https://gitee.com/mountain123/JLUVision_Demos/tree/master/Armor_Demo)为装甲板识别模块演示程序，可在Linux(.pro)/Windows(.sln)运行。  
-[AngleSolver_Armor_GxCamera](https://gitee.com/mountain123/JLUVision_Demos/tree/master/Anglesolver_Armor_GxCamera_Demo)为大恒相机采图+装甲板+角度解算演示程序，需要连接大恒相机在Linux下运行。  
+[JLUVision_Demos](https://gitee.com/qunshanhe/JLUVision_Demos)各示例程序代码库  
+[Armor_Demo](https://gitee.com/qunshanhe/JLUVision_Demos/tree/master/Armor_Demo)为装甲板识别模块演示程序，可在Linux(.pro)/Windows(.sln)运行。  
+[AngleSolver_Armor_GxCamera](https://gitee.com/qunshanhe/JLUVision_Demos/tree/master/Anglesolver_Armor_GxCamera_Demo)为大恒相机采图+装甲板+角度解算演示程序，需要连接大恒相机在Linux下运行。  
 
 ### Debugging Tools  
 代码还自定义了一套调试用的函数，将灯条、装甲板识别、角度解算等信息进行可视化输出，并可通过键盘控制部分识别参数，为代码的调试和优化带来便利。  
